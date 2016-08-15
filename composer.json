@@ -3,6 +3,7 @@
     "description": "Package provides bridge functionality to run legacy apps inside Zend Expressive",
     "type": "library",
     "require": {
+        "php": ">=7.0",
         "zendframework/zend-expressive": "^1.0@dev",
         "zendframework/zend-expressive-router": "^1.2@dev",
         "zendframework/zend-hydrator": "^2.2@dev",
@@ -24,7 +25,4 @@
         }
     ],
     "minimum-stability": "dev"
-    "require": {
-        "php": ">=7.0"
-    }
 }
