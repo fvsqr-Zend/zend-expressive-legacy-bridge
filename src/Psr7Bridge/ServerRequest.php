@@ -1,5 +1,5 @@
 <?php
-namespace Zf1ExpBridge\Psr7Bridge;
+namespace Zend\Expressive\LegacyBridge\Psr7Bridge;
 
 use Psr\Http\Message\ServerRequestInterface;
 
