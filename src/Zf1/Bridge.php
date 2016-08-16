@@ -2,8 +2,8 @@
 namespace Zend\Expressive\LegacyBridge\Zf1;
 
 use Zend\Hydrator\HydratorInterface;
-use Zf1ExpBridge\Psr7Bridge\ServerRequest;
-use Zf1ExpBridge\Psr7Bridge\Response;
+use Zend\Expressive\LegacyBridge\Psr7Bridge\ServerRequest;
+use Zend\Expressive\LegacyBridge\Psr7Bridge\Response;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Bridge {
