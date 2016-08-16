@@ -32,7 +32,7 @@ class Bridge {
     public function __construct(
         callable $requestParamsStrategy,
         \Zend_Application $application, 
-        \Zend_Controller_Action_Helper_ViewRenderer$viewRenderer,
+        \Zend_Controller_Action_Helper_ViewRenderer $viewRenderer,
         callable $responseHydrator
     ) {
 
@@ -45,6 +45,8 @@ class Bridge {
     public function __invoke(ServerRequestInterface $req, $res, $next) {
         $routeResult = $req->getAttribute('Zend\Expressive\Router\RouteResult');
         $routeName = $routeResult->getMatchedRouteName();
+        
+        $apiPrefix = $req->getAttribute('api-prefix');
         
         $req = ServerRequest::toZf1($req, ($this->requestParamsStrategy)($routeName));
         
@@ -60,6 +62,6 @@ class Bridge {
         
         $response = $this->viewRenderer->getActionController()->getResponse();
         
-        return Response::fromZf1ViewToJson($response, ($this->responseHydrator)($routeName), $view);
+        return Response::fromZf1ViewToJson($response, ($this->responseHydrator)($routeName), $view, $apiPrefix);
     }
 }

@@ -11,7 +11,8 @@ final class Response
     public static function fromZf1ViewToJson(
         \Zend_Controller_Response_Abstract $zendResponse, 
         HydrationInterface $hydrator,
-        \Zend_View_Interface $view
+        \Zend_View_Interface $view,
+        $apiPrefix = ''
     )
     {
         $status = $zendResponse->getHttpResponseCode();
@@ -19,7 +20,7 @@ final class Response
             $headers = $zendResponse->getHeaders();
             foreach ($headers as $key => $header) {
                 if ($header['name'] == 'Location') {
-                    $uri = '/api' . $header['value'];
+                    $uri = $apiPrefix . $header['value'];
                     unset($headers[$key]);
                     break;
                 }

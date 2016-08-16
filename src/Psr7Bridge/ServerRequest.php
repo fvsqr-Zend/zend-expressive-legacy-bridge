@@ -11,7 +11,9 @@ final class ServerRequest
         
         $uri = $psr7Request->getAttribute('originalUri');
         
-        $uri = str_replace('/api', '', $uri);
+        if ($apiPrefix = $psr7Request->getAttribute('api-prefix')) {
+            $uri = str_replace($apiPrefix, '', $uri);
+        }
 
         $zendRequest = new \Zend_Controller_Request_Http((string) $uri);
         $zendRequest->setParams($paramsStrategy($psr7Request));
