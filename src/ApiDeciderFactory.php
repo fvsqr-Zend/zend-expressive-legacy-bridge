@@ -8,9 +8,8 @@ class ApiDeciderFactory
     public function __invoke(ServiceManager $container)
     {
         $legacyRedirector = $container->get('legacyRedirector');
-        $app = $container->get('Zend\Expressive\Application');
         
-        return new ApiDecider($legacyRedirector, $app);
+        return new ApiDecider($legacyRedirector);
     }
         
     private function redirect($path, $url, $res, $query = [])
