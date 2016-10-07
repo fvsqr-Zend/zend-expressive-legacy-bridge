@@ -3,9 +3,9 @@ namespace Zend\Expressive\LegacyBridge;
 
 use Zend\Expressive\LegacyBridge\ApiDecider;
 use Zend\Expressive\LegacyBridge\ApiDeciderFactory;
-use Zend\Expressive\LegacyBridge\Zf1\Bridge;
-use Zend\Expressive\LegacyBridge\Zf1\BridgeFactory;
+use Zend\Expressive\LegacyBridge\Zf1;
 use Zend\Expressive\LegacyBridge\Zf1\ViewRendererFactory;
+use Zend\Expressive\LegacyBridge\Sf1;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Router\FastRouteRouter;
@@ -28,10 +28,6 @@ class ConfigProvider
                     
                     $url = $url->withPath($path);
                     
-                    #if (count($query)) {
-                    #    $url = $url->withQuery(http_build_query($query));
-                    #}
-                    
                     return $res
                         ->withStatus(301)
                         ->withHeader('Location', (string) $url);
@@ -43,7 +39,8 @@ class ConfigProvider
             ],
             'factories' => [
                 ApiDecider::class => ApiDeciderFactory::class,
-                Bridge::class => BridgeFactory::class,
+                Zf1\Bridge::class => Zf1\BridgeFactory::class,
+                Sf1\Bridge::class => Sf1\BridgeFactory::class,
                 'ViewRenderer' => ViewRendererFactory::class,
                 'RequestParamsProxy' => function ($container) {
                     return function($routeName) use ($container) {

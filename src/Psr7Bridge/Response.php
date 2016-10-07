@@ -34,6 +34,15 @@ final class Response
             }
         };
     }
+    
+    public static function fromSfParameterHolderToJson(\sfParameterHolder $paramHolder, HydrationInterface $hydrator, $status) {
+        return new class($paramHolder, $hydrator, $status) extends JsonResponse {
+            public function __construct($paramHolder, $hydrator, $status) {
+                $data = new \ArrayObject($paramHolder->getAll());
+                return parent::__construct($hydrator->extract($data), $status);
+            }
+        };
+    }
 
     /**
      * Do not allow instantiation.
