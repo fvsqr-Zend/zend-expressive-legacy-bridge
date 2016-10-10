@@ -17,6 +17,11 @@
         "zendframework/zend-hydrator": "^2.2@dev",
         "zendframework/zend-expressive-helpers": "^2.0@dev"
     },
+    "autoload": {
+      "psr-4": {
+        "Zend\\Expressive\\LegacyBridge": "src/"
+      }
+    },
     "license": "Apache-2.0",
     "authors": [
         {
