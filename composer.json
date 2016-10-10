@@ -19,7 +19,7 @@
     },
     "autoload": {
       "psr-4": {
-        "Zend\\Expressive\\LegacyBridge": "src/"
+        "Zend\\Expressive\\LegacyBridge\\": "src/"
       }
     },
     "license": "Apache-2.0",
