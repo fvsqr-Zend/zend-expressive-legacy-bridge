@@ -5,6 +5,8 @@ use Zend\Hydrator\HydratorInterface;
 use Zend\Expressive\LegacyBridge\Psr7Bridge\ServerRequest;
 use Zend\Expressive\LegacyBridge\Psr7Bridge\Response;
 use Psr\Http\Message\ServerRequestInterface;
+use \Zend_Application as Application;
+use \Zend_Controller_Action_Helper_ViewRenderer as ViewRenderer;
 
 class Bridge {
     /**
@@ -31,8 +33,8 @@ class Bridge {
    
     public function __construct(
         callable $requestParamsStrategy,
-        \Zend_Application $application, 
-        \Zend_Controller_Action_Helper_ViewRenderer $viewRenderer,
+        Application $application, 
+        ViewRenderer $viewRenderer,
         callable $responseHydrator
     ) {
 
