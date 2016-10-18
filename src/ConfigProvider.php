@@ -9,6 +9,7 @@ use Zend\Expressive\LegacyBridge\Sf1;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Router\FastRouteRouter;
+use Zend\Hydrator\ObjectProperty;
 
 class ConfigProvider
 {
@@ -35,7 +36,7 @@ class ConfigProvider
             ],
             'invokables' => [
                 RouterInterface::class => FastRouteRouter::class,
-                'Hydrator' => 'Zend\Hydrator\ObjectProperty'
+                'Hydrator' => ObjectProperty::class
             ],
             'factories' => [
                 ApiDecider::class => ApiDeciderFactory::class,
