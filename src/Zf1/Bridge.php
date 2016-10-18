@@ -2,6 +2,7 @@
 namespace Zend\Expressive\LegacyBridge\Zf1;
 
 use Zend\Hydrator\HydratorInterface;
+use Zend\Expressive\Router\RouteResult;
 use Zend\Expressive\LegacyBridge\Psr7Bridge\ServerRequest;
 use Zend\Expressive\LegacyBridge\Psr7Bridge\Response;
 use Psr\Http\Message\ServerRequestInterface;
@@ -45,7 +46,7 @@ class Bridge {
     }
     
     public function __invoke(ServerRequestInterface $req, $res, $next) {
-        $routeResult = $req->getAttribute('Zend\Expressive\Router\RouteResult');
+        $routeResult = $req->getAttribute(RouteResult::class);
         $routeName = $routeResult->getMatchedRouteName();
         
         $apiPrefix = $req->getAttribute('api-prefix');
