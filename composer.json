@@ -1,33 +1,25 @@
 {
-    "name": "janatzend/zend-expressive-legacy-bridge",
-    "description": "Package provides bridge functionality to run legacy apps inside Zend Expressive",
-    "type": "library",
-    "require": {
-        "php": ">=7.0",
-        "zendframework/zend-expressive": "^1.0@dev",
-        "zendframework/zend-expressive-router": "^1.2@dev",
-        "zendframework/zend-hydrator": "^2.2@dev",
-        "zendframework/zend-servicemanager": "^3.1@dev",
-        "zendframework/zend-expressive-template": "^1.0@dev"
-    },
-    "require-dev": {
-        "zendframework/zend-expressive": "^1.0@dev",
-        "zendframework/zend-expressive-router": "^1.2@dev",
-        "zendframework/zend-servicemanager": "^3.1@dev",
-        "zendframework/zend-hydrator": "^2.2@dev",
-        "zendframework/zend-expressive-helpers": "^2.0@dev"
-    },
-    "autoload": {
-      "psr-4": {
-        "Zend\\Expressive\\LegacyBridge\\": "src/"
-      }
-    },
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "janatzend",
-            "email": "jan@zend.com"
-        }
-    ],
-    "minimum-stability": "dev"
+  "name" : "janatzend/zend-expressive-legacy-bridge",
+  "description" : "Package provides bridge functionality to run legacy apps inside Zend Expressive",
+  "require" : {
+    "php" : ">=7.0",
+    "zendframework/zend-expressive" : "1.0.0",
+    "zendframework/zend-expressive-router" : "1.2.0",
+    "zendframework/zend-hydrator" : "2.2.1",
+    "zendframework/zend-servicemanager" : "3.1.1",
+    "zendframework/zend-expressive-template" : "1.0.3",
+    "zendframework/zend-expressive-fastroute" : "1.2.0"
+  },
+  "license" : "Apache-2.0",
+  "minimum-stability" : "dev",
+  "autoload" : {
+    "psr-4" : {
+      "Zend\\Expressive\\LegacyBridge\\" : "src/"
+    }
+  },
+  "type" : "library",
+  "authors" : [ {
+    "name" : "janatzend",
+    "email" : "jan@zend.com"
+  } ]
 }
