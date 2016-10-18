@@ -4,14 +4,16 @@ namespace Zend\Expressive\LegacyBridge\Psr7Bridge;
 use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Hydrator\HydrationInterface;
+use \Zend_Controller_Response_Abstract as Response;
+use \Zend_View_Interface as View;
 
 final class Response
 {
     
     public static function fromZf1ViewToJson(
-        \Zend_Controller_Response_Abstract $zendResponse, 
+        Response $zendResponse, 
         HydrationInterface $hydrator,
-        \Zend_View_Interface $view,
+        View $view,
         $apiPrefix = ''
     )
     {

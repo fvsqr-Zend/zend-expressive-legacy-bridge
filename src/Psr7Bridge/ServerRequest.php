@@ -2,6 +2,7 @@
 namespace Zend\Expressive\LegacyBridge\Psr7Bridge;
 
 use Psr\Http\Message\ServerRequestInterface;
+use \Zend_Controller_Request_Http as Request;
 
 final class ServerRequest
 {
@@ -15,7 +16,7 @@ final class ServerRequest
             $uri = str_replace($apiPrefix, '', $uri);
         }
 
-        $zendRequest = new \Zend_Controller_Request_Http((string) $uri);
+        $zendRequest = new Request((string) $uri);
         $zendRequest->setParams($paramsStrategy($psr7Request));
         
         return $zendRequest;

@@ -2,6 +2,9 @@
 namespace Zend\Expressive\LegacyBridge\Zf1;
 
 use Zend\ServiceManager\ServiceManager;
+use \Zend_Application as Application;
+use \Zend_Controller_Action_HelperBroker as HelperBroker;
+use \Zend_Controller_Action_Helper_Redirector as Redirector;
 
 class BridgeFactory
 {
@@ -11,17 +14,17 @@ class BridgeFactory
         
         require_once 'Zend/Application.php';
         
-        $application = new \Zend_Application(
+        $application = new Application (
             APPLICATION_ENV,
             APPLICATION_PATH . '/configs/application.ini'
         );
         
         $viewRenderer = $container->get('ViewRenderer');
-        \Zend_Controller_Action_HelperBroker::getStack()->offsetSet(-80, $viewRenderer);
+        HelperBroker::getStack()->offsetSet(-80, $viewRenderer);
         
-        $redirector = new \Zend_Controller_Action_Helper_Redirector();
+        $redirector = new Redirector();
         $redirector->setExit(false);
-        \Zend_Controller_Action_HelperBroker::addHelper($redirector);
+        HelperBroker::addHelper($redirector);
         
         $hydrator = $container->get('HydratorProxy');
         
