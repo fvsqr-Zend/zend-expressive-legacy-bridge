@@ -13,22 +13,23 @@ use Zend\Hydrator\ObjectProperty;
 
 class ConfigProvider
 {
-    public function getDependencyConfig() {
+    public function getDependencyConfig()
+    {
         return [
             'services' => [
-                'RequestParamsStrategyDefault' => function(ServerRequestInterface $req) {
-                    return array(
+                'RequestParamsStrategyDefault' => function (ServerRequestInterface $req) {
+                    return [
                         'controller' => $req->getAttribute('controller', false),
                         'action' => $req->getAttribute('action', false),
                         'id' => $req->getAttribute('id', false)
-                    );
+                    ];
                 },
-                'legacyRedirector' => function($req, $res) {
+                'legacyRedirector' => function ($req, $res) {
                     $url  = $req->getUri();
                     $path = '/zf.php' . $url->getPath();
-                    
+
                     $url = $url->withPath($path);
-                    
+
                     return $res
                         ->withStatus(301)
                         ->withHeader('Location', (string) $url);
@@ -45,10 +46,10 @@ class ConfigProvider
                 'ViewRenderer' => ViewRendererFactory::class,
                 'RequestParamsProxy' => RequestParamsProxyFactory::class,
                 'HydratorProxy' => HydratorProxyFactory::class
-            ]    
+            ]
         ];
     }
-    
+
     public function __invoke()
     {
         return [

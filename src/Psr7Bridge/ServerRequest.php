@@ -9,16 +9,16 @@ final class ServerRequest
     public static function toZf1(ServerRequestInterface $psr7Request, callable $paramsStrategy)
     {
         require_once 'Zend/Controller/Request/Http.php';
-        
+
         $uri = $psr7Request->getAttribute('originalUri');
-        
+
         if ($apiPrefix = $psr7Request->getAttribute('api-prefix')) {
             $uri = str_replace($apiPrefix, '', $uri);
         }
 
         $zendRequest = new Request((string) $uri);
         $zendRequest->setParams($paramsStrategy($psr7Request));
-        
+
         return $zendRequest;
     }
 

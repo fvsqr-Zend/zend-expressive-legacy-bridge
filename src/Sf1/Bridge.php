@@ -7,19 +7,20 @@ use Zend\Expressive\LegacyBridge\Psr7Bridge\ServerRequest;
 use Zend\Expressive\LegacyBridge\Psr7Bridge\Response;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Bridge {
+class Bridge
+{
     /**
      * @var \sfContext
      */
     private $context;
-    
+
     /**
      * @var HydratorInterface
      */
     private $responseHydrator;
-    
+
     private $routeMapping;
-    
+
     public function __construct(
         \sfContext $context,
         callable $responseHydrator,
@@ -27,25 +28,26 @@ class Bridge {
     ) {
         $this->context = $context;
         $this->responseHydrator = $responseHydrator;
-        $this->routeMapping = $routeMapping;        
+        $this->routeMapping = $routeMapping;
     }
-    
-    public function __invoke(ServerRequestInterface $req, $res, $next) {
+
+    public function __invoke(ServerRequestInterface $req, $res, $next)
+    {
         $routeResult = $req->getAttribute(RouteResult::class);
         $routeName = $routeResult->getMatchedRouteName();
-        
+
         if (array_key_exists($routeName, $this->routeMapping)) {
             $parameters = $this->context->getRouting()->parse($this->routeMapping[$routeName]);
             $this->context->getRequest()->addRequestParameters($parameters);
         }
-        
+
         $this->context->dispatch();
-        
+
         $action = $this->context->getActionStack()->popEntry()->getActionInstance();
         $varHolder = $action->getVarHolder();
-        
+
         $status = $this->context->getResponse()->getStatusCode();
-        
+
         return Response::fromSfParameterHolderToJson(
             $varHolder,
             ($this->responseHydrator)($routeName),

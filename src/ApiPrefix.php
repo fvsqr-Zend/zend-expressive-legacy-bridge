@@ -11,9 +11,9 @@ class ApiPrefix
         $origPath = $req->getOriginalRequest()->getUri()->getPath();
 
         $apiPrefix = str_replace($path, '', $origPath);
-        
+
         $req = $req->withAttribute('api-prefix', $apiPrefix);
-        
+
         return $next($req, $res);
     }
 }

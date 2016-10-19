@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  
+  php-qa:
+    build: 
+      context: https://github.com/janatzend/dockerfiles.git
+      dockerfile: php-qa/php5.6-composer-phpunit-phpcs
+    volumes: 
+      - "$PWD:/src"
