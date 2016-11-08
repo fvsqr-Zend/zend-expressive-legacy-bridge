@@ -11,17 +11,4 @@ class ApiDeciderFactory
 
         return new ApiDecider($legacyRedirector);
     }
-
-    private function redirect($path, $url, $res, $query = [])
-    {
-        $url = $url->withPath($path);
-
-        if (count($query)) {
-            $url = $url->withQuery(http_build_query($query));
-        }
-
-        return $res
-        ->withStatus(301)
-        ->withHeader('Location', (string) $url);
-    }
 }
