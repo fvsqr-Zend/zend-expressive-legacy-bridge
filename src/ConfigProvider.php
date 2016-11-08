@@ -17,6 +17,7 @@ class ConfigProvider
     {
         return [
             'services' => [
+                'RequestParamsStrategyMapper' => [],
                 'RequestParamsStrategyDefault' => function (ServerRequestInterface $req) {
                     return [
                         'controller' => $req->getAttribute('controller', false),
