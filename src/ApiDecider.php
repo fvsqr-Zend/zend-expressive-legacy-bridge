@@ -7,17 +7,14 @@ class ApiDecider
 {
     private $legacyRedirector;
     private $app;
-
-    public function __construct($legacyRedirector)
-    {
-        $this->legacyRedirector = $legacyRedirector;
+    
+    public function __construct($legacyRedirector) {
+        $this->legacyRedirector = $legacyRedirector;   
     }
-
+    
     public function __invoke(Request $req, $res, $next)
     {
-        $accept = explode(',', $req->getHeader('Accept')[0]);
-
-        if (in_array('application/json', $accept)) {
+        if ($req->getHeaderLine('Accept') == 'application/json') {
             return $next($req, $res);
         }
 
