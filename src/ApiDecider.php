@@ -6,7 +6,6 @@ use Zend\Stratigility\Http\Request;
 class ApiDecider
 {
     private $legacyRedirector;
-    private $app;
     
     public function __construct($legacyRedirector) {
         $this->legacyRedirector = $legacyRedirector;   
