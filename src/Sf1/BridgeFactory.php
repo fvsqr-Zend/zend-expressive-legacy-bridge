@@ -9,7 +9,7 @@ class BridgeFactory
     {
         $config = ($container->get('config'));
 
-        if (array_key_exists('sf1-prereq', $config)) {
+        if (array_key_exists('sf1-prereq', $config) && is_callable($config['sf1-prereq']())) {
             $config['sf1-prereq']();
         }
         if (array_key_exists('route-mapping', $config)) {
