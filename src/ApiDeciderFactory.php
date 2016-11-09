@@ -8,7 +8,8 @@ class ApiDeciderFactory
     public function __invoke(ServiceManager $container)
     {
         $legacyRedirector = $container->get('legacyRedirector');
-
-        return new ApiDecider($legacyRedirector);
+        $pathCreator = $container->get('pathCreator');
+        
+        return new ApiDecider($legacyRedirector, $pathCreator);
     }
 }

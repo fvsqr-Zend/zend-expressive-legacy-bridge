@@ -25,11 +25,10 @@ class ConfigProvider
                         'id' => $req->getAttribute('id', false)
                     ];
                 },
-                'legacyRedirector' => function ($req, $res) {
-                    $url  = $req->getUri();
-                    $path = '/zf.php' . $url->getPath();
+                'legacyRedirector' => function ($req, $res, callable $pathCreator) {
+                    $path = $pathCreator($req);
 
-                    $url = $url->withPath($path);
+                    $url = $req->getUri()->withPath($path);
 
                     return $res
                         ->withStatus(301)
